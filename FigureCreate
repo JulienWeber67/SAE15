@@ -1,0 +1,19 @@
+import matplotlib
+import matplotlib.pyplot as pyplot
+import numpy as np
+import pandas as pd
+
+
+df = pd.read_csv("Evolution_et_structure_de_la_population/Evolution_structure_population.csv", sep=";")
+df = df.set_index("libgeo")
+df
+
+pyplot.figure(figsize = (8, 8))
+x = [1, 2, 3, 4, 10]
+pyplot.pie(x, labels = ['A', 'B', 'C', 'D', 'E'],
+           colors = ['red', 'green', 'yellow'],
+           explode = [0, 0.2, 0, 0, 0],
+           autopct = lambda x: str(round(x, 2)) + '%',
+           pctdistance = 0.7, labeldistance = 1.4,
+           shadow = True)
+pyplot.legend()
