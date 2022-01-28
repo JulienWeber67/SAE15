@@ -1,16 +1,15 @@
 import matplotlib.pyplot as plt
 
-def make_pie(data=None, subtitle=''):
-    labels = ['Valeur Abérrante', 'Manquante']
+def make_pie(data='', subtitle=''):
+    labels = ['Valeur Manquante', 'Valeur Complète']
     colors = ['yellowgreen', 'gold']
     highest = max(data)
     explode = [0.1 if k == highest else 0 for k in data]
     plt.pie(data, explode=explode, labels=labels, colors=colors,
-            shadow=True, autopct='%1.2f%%')
+            shadow=True, autopct='%0.1f%%')
     plt.xlabel(subtitle)
-    plt.axis('equal')
 
 if __name__ == '__main__':
-    make_pie(data=[0.55, 1.0], subtitle='Valeur Manquante / Valeur Abérrante')
-    plt.suptitle(u'Camembert sur les Valeur Manquante et Abérrante')
+    make_pie(data=[1073100,1609650], subtitle='')
+    plt.suptitle(u'Camembert sur les Valeur Manquante et Complète')
     plt.show()
