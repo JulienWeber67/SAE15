@@ -1,19 +1,16 @@
-import matplotlib
-import matplotlib.pyplot as pyplot
-import numpy as np
-import pandas as pd
+import matplotlib.pyplot as plt
 
+def make_pie(data=None, subtitle=''):
+    labels = ['Valeur Abérrante', 'Manquante']
+    colors = ['yellowgreen', 'gold']
+    highest = max(data)
+    explode = [0.1 if k == highest else 0 for k in data]
+    plt.pie(data, explode=explode, labels=labels, colors=colors,
+            shadow=True, autopct='%1.2f%%')
+    plt.xlabel(subtitle)
+    plt.axis('equal')
 
-df = pd.read_csv("Evolution_et_structure_de_la_population/Evolution_structure_population.csv", sep=";")
-df = df.set_index("libgeo")
-df
-
-pyplot.figure(figsize = (8, 8))
-x = [1, 2, 3, 4, 10]
-pyplot.pie(x, labels = ['A', 'B', 'C', 'D', 'E'],
-           colors = ['red', 'green', 'yellow'],
-           explode = [0, 0.2, 0, 0, 0],
-           autopct = lambda x: str(round(x, 2)) + '%',
-           pctdistance = 0.7, labeldistance = 1.4,
-           shadow = True)
-pyplot.legend()
+if __name__ == '__main__':
+    make_pie(data=[0.55, 1.0], subtitle='Valeur Manquante / Valeur Abérrante')
+    plt.suptitle(u'Camembert sur les Valeur Manquante et Abérrante')
+    plt.show()
